@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voz Tempo Real</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Conversão para Texto</h1>
+        <div id="content">
+            <textarea id="output" rows="10" cols="50" placeholder="O texto aparecerá aqui..."></textarea>
+            <button id="start-record-btn">Iniciar Gravação</button>
+            <button id="stop-record-btn" disabled>Parar Gravação</button>
+            <h1>Selecione um Arquivo PDF</h1>
+            <input type="file" id="file-input" accept="application/pdf">
+        </div>
+    </div>
+
+    <!-- <div class="container">
+       <iframe src="C:\Users\Bruno\Documents\MATERIAL\FACULDADE SENAC\1 - ENGENHARIA DE REQUISITOS - 037\PDF\etnografia.pdf" width="900" height="600" style="border: none;"></iframe> 
+    </div>
+    -->
+
+     <div class="container">
+        <iframe id="pdf-viewer"width="900" height="600" style="border: none;"></iframe>
+    </div>
+
+    <!-- CÓDIGO SOBRE UPLOAD DO PDF -->
+     <script>
+        document.getElementById('file-input').addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(e) {
+                const iframe = document.getElementById('pdf-viewer');
+                iframe.src = e.target.result;
+                iframe.style.display = 'block';
+            };
+
+            if (file) {
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+
+
+    <script src="app.js"></script>
+
+   
+    <!-- CÓDIGO DO VLIBRAS -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+
+   
+
+
+
+</body>
+</html>
